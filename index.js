@@ -1,5 +1,6 @@
 function updateTime() {
   let pretoriaElement = document.querySelector("#pretoria");
+  if (pretoriaElement.length >0){
   let pretoriaDateElement = pretoriaElement.querySelector(".date");
   let pretoriaTimeElement = pretoriaElement.querySelector(".time");
   let pretoriaTime = moment().tz("Africa/Johannesburg");
@@ -8,7 +9,7 @@ function updateTime() {
   pretoriaTimeElement.innerHTML = pretoriaTime.format(
     "h:mm:ss [<small>]A[</small>]"
   );
-
+  }
   //second city//
 
   let bangkokElement = document.querySelector("#bangkok");
@@ -21,5 +22,27 @@ function updateTime() {
     "h:mm:ss [<small>]A[</small>]"
   );
 }
+
+function updateCity(event) {
+  let cityTimeZone = event.target.value;
+  cityName = cityTimeZone.replace("_"," ").split("/")[1];
+  let cityTime = moment().tz(cityTimeZone);
+  let citiesElement = document.querySelector("#cities");
+  citiesElement.innerHTML =`
+
+ <div class="city">
+          <div>
+            <h2>${cityTimeZone}</h2>
+            <div class="date">${cityTime.format("MMMM Do YYYY")}</div>
+          </div>
+          <div class="time">${cityTime.format(
+            "h:mm:ss"
+          )} <small>${cityTime.format("A")}</small></div>
+        </div>
+`;
+}
 updateTime();
 setInterval(updateTime, 1000);
+
+let cityOptions = document.querySelector("#city");
+cityOptions.addEventListener("change", updateCity);
