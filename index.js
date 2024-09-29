@@ -1,6 +1,5 @@
 function updateTime() {
   let pretoriaElement = document.querySelector("#pretoria");
-  if (pretoriaElement.length >0){
   let pretoriaDateElement = pretoriaElement.querySelector(".date");
   let pretoriaTimeElement = pretoriaElement.querySelector(".time");
   let pretoriaTime = moment().tz("Africa/Johannesburg");
@@ -9,7 +8,6 @@ function updateTime() {
   pretoriaTimeElement.innerHTML = pretoriaTime.format(
     "h:mm:ss [<small>]A[</small>]"
   );
-  }
   //second city//
 
   let bangkokElement = document.querySelector("#bangkok");
@@ -21,6 +19,17 @@ function updateTime() {
   bangkokTimeElement.innerHTML = bangkokTime.format(
     "h:mm:ss [<small>]A[</small>]"
   );
+
+  //third city//
+   let turkeyElement = document.querySelector("#turkey");
+   let turkeyDateElement = turkeyElement.querySelector(".date");
+   let turkeyTimeElement = turkeyElement.querySelector(".time");
+   let turkeyTime = moment().tz("Turkey");
+
+   turkeyDateElement.innerHTML = turkeyTime.format("MMMM Do YYYY");
+   turkeyTimeElement.innerHTML = turkeyTime.format(
+     "h:mm:ss [<small>]A[</small>]"
+   );
 }
 
 function updateCity(event) {
